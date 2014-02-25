@@ -1,0 +1,37 @@
+Processing v3.0
+---------------
+
+See parser-v30.txt for parser changes required for this to work
+
+    switch the processing to non-blocking mode and swap the process daemon to this:
+
+    - 'master' daemon sits and listens on a thunderpush channel for upload notifications, an upload notification
+      will just trigger a check for new jobs that need processed.
+
+      jobs are pushed on an internal queue
+
+    - master will loop the queue using a recurring timer, and if there are less workers active than th maximum,
+      will fork itself off and exec() the single-file processor that gets passed the job ID to handle. 
+
+
+    push messages:
+
+        source              target      evt                 data            desc
+        ---------------------------------------------------------------------------------------------------------
+        site/api            master      replay.upload       none            notification that replay is uploaded 
+                                                                            and job ready
+
+        master              site        replay.process      jobid           notification that replay has been
+                                                                            dequeued for processing
+
+        worker              site        replay.update       jobid           notification that the job has an updated
+                                                                            status, can be used to ask for an ajax
+                                                                            status update
+
+        worker              site        replay.new          replayid        notification that a replay is finished
+                                                                            processing and can be displayed
+
+
+    
+        
+       

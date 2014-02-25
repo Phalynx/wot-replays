@@ -1,0 +1,17 @@
+Parser 3.0
+----------
+
+    1) Switch back to using a distinction between complete and incomplete replays
+    2) WR::Parser needs to be replaced with the current WR::Game; move the parser and
+       it's version-dependent stuff back into a low-level role.
+
+
+    
+    Perhaps wrap the actual replay unpacking, decrypting, and stream into a WR::Parser::File object that has
+    the required logic and enables some non-blocking methodologies.
+
+   
+    Current Game.pm needs to use the data in the replay, and not the battle result as the primary source.
+    Battle result data only gets added after the entire thing has ran it's course.
+
+

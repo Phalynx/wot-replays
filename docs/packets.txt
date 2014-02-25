@@ -1,3 +1,0 @@
-Packet types:
-
-0x08 - seem to be onArena* events, see the onArena* methods in the various code
