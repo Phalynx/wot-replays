@@ -1,4 +1,4 @@
-package WR::Provider::Mapgrid;
+package WR::Util::Mapgrid;
 use Mojo::Base '-base';
 use Try::Tiny qw/try catch/;
 use POSIX qw/floor/;

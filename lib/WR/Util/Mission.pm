@@ -1,4 +1,4 @@
-package WR::Mission;
+package WR::Util::Mission;
 use Mojo::Base '-base';
 
 has 'mission'       => undef;     # the hash from the missions collection in statterbox' db
@@ -24,7 +24,6 @@ sub bonuses { return shift->mission->{bonuses} }
 
 sub is_limited_to_vehicle {
     my $self = shift;
-
     return (defined($self->mission->{conditions}->{preBattle}->{vehicle}->{vehicleDescr})) ? 1 : 0;
 }
 

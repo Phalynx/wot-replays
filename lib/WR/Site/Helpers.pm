@@ -1,4 +1,4 @@
-package WR::App::Helpers;
+package WR::Site::Helpers;
 use strict;
 use warnings;
 use WR::Query;

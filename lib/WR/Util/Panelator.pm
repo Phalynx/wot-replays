@@ -1,4 +1,4 @@
-package WR::Provider::Panelator;
+package WR::Util::Panelator;
 use Mojo::Base '-base';
 use Mango::BSON;
 

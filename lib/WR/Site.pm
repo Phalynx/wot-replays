@@ -1,32 +1,19 @@
-package WR::App;
+package WR::Site;
 use Mojo::Base 'Mojolicious';
 use Mojo::JSON;
 use Mango;
-
-# this is a bit cheesy but... 
-#use FindBin;
-#use lib "$FindBin::Bin/../lib";
-
-use WR;
-use WR::Res;
-use WR::Query;
-use WR::QuickDB;
 use Time::HiRes qw/gettimeofday/;
 
-use WR::App::Helpers;
-use WR::App::Routes;
+use WR;
+use WR::Util::Res;
+use WR::Util::Query;
+use WR::Util::QuickDB;
+use WR::Common::Helpers;
+use WR::Site::Helpers;
+use WR::Site::Routes;
 
-$Template::Stash::PRIVATE = undef;
-
-# This method will run once at server start
 sub startup {
     my $self = shift;
-
-    use Data::Dumper;
-    warn Dumper({ %INC });
-    
-    $self->attr(json => sub { return Mojo::JSON->new() });
-
     my $config = $self->plugin('Config', { file => 'wr.conf' });
 
     $self->secrets([ $config->{secrets}->{app} ]);
@@ -34,7 +21,6 @@ sub startup {
 
     $self->sessions->default_expiration(86400 * 365); 
     $self->sessions->cookie_name('wrsession');
-    $self->log->debug('we are in dev mode, cookie_domain not set') if(defined($config->{mode}) && $config->{mode} eq 'dev');
     $self->sessions->cookie_domain($config->{urls}->{app_c}) if(!defined($config->{mode}) || $config->{mode} ne 'dev');
 
     $self->plugin('WR::Plugin::Mango', $config->{mongodb});

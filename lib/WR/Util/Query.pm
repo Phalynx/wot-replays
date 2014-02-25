@@ -1,4 +1,4 @@
-package WR::Query;
+package WR::Util::Query;
 use Mojo::Base '-base';
 use Mojo::JSON;
 use Digest::SHA1;

@@ -1,18 +1,11 @@
-package WR::Res::Achievements;
+package WR::Util::Res::Achievements;
 use Mojo::Base '-base';
 use Mojo::JSON;
 use File::Slurp qw/read_file/;
 use Data::Dumper;
 
-has 'path' => sub {
-    my $self = shift;
-
-    # yes, this is still ghetto as all fuck
-    return (-e '/home/ben/projects/wot-replays/site')
-        ? '/home/ben/projects/wot-replays/site/etc/res'
-        : '/home/wotreplay/wot-replays/etc/res';
-};
-
+# must be passed from WR::Util::Res
+has 'path' => undef;
 
 has achievements                => sub { [] };
 has achievements_reverse        => sub { {} };

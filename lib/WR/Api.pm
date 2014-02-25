@@ -1,7 +1,5 @@
-package WR::API;
+package WR::Api;
 use Mojo::Base 'Mojolicious';
-use FindBin;
-use lib "$FindBin::Bin/../lib";
 use Mango;
 use Mojo::Util qw/monkey_patch/;
 use Scalar::Util qw/blessed/;

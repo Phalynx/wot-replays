@@ -1,10 +1,10 @@
-package WR::API::V1;
+package WR::Api::V1;
 use Mojo::Base 'Mojolicious::Controller';
 use File::Path qw/make_path/;
 use Mango::BSON;
 use Scalar::Util qw/blessed/;
 use Try::Tiny qw/try catch/;
-use WR::Provider::Mapgrid;
+use WR::Util::Mapgrid;
 
 sub validate_token {
     my $self    = shift;
